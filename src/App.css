@@ -36,3 +36,11 @@
     transform: rotate(360deg);
   }
 }
+
+.leafNode {
+  border-style: solid;
+  border-width: medium;
+  background: linear-gradient(45deg, black, transparent);
+  font-family: cursive;
+  font-size: x-large;
+}

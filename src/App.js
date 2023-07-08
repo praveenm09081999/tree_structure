@@ -26,6 +26,9 @@ function App() {
   const deleteTreeStructure = (selectedBranch)=> {
     let numArr = selectedBranch.split("-").map(e => parseInt(e)).filter(e => e || e===0)
     let objArr = branchObj
+    if(numArr.length == 1){
+    objArr.splice(numArr[0],1);
+    }else{
     for(let i=0;i<numArr.length;i++){
       if(i === numArr.length-3 && numArr[i+2] === 0){
         if(numArr[i]+1 < objArr[numArr[i]].length){
@@ -47,14 +50,24 @@ function App() {
       }
     }
   }
+  }
 
 
   const structureTree = (currArr,currBranch) => {
     let leafHtml = <></>
     let html = <></>
     if(typeof (currArr) == "string"){
-      leafHtml = <TreeNode label={<div id={currBranch}>{currArr}</div>}></TreeNode>
-      html = leafHtml
+      leafHtml = <TreeNode label={
+        <div id={currBranch} class={"leafNode"}><div onClick={e => {
+          deleteTreeStructure(currBranch)
+          setBranchObj([...branchObj])
+          }}>x</div>
+        {currArr}
+        <div onClick={e => {
+          setaddPopup(!addPopup)
+          setSelectedBranch(currBranch)
+          }}>+</div></div>}></TreeNode>
+        html = leafHtml
     } else {
       for(let i=1;i<currArr.length;i++){
         leafHtml = <>{leafHtml} {structureLeaves(currArr[i],currBranch+"-"+i)} </>
@@ -70,7 +83,7 @@ function App() {
     let html = <></>
     if(typeof arr == "string"){
       leafHtml = <TreeNode label={
-      <div id={branch}><div onClick={e => {
+      <div id={branch} class={"leafNode"}><div onClick={e => {
         deleteTreeStructure(branch)
         setBranchObj([...branchObj])
         }}>x</div>
