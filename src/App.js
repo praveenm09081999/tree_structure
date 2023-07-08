@@ -9,7 +9,7 @@ function App() {
   const [addPopup,setaddPopup] = useState(false)
   const [selectedBranch,setSelectedBranch] = useState(null)
   useEffect(()=>{
-    let ArrBranch = ["root",["cool",["rahul","rashmik",["gokul","vishnu"]],"raam"],"rahul","jasmine"]
+    let ArrBranch = ["Bor Burison",["Odin",["Thor","Thrud",["Thorson","ThorGrandson"]],"Loki","Hema"],"Curl","Vili"]
     setBranchObj([...branchObj,...ArrBranch])
   },[])
   
