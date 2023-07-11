@@ -58,7 +58,7 @@ function App() {
     let html = <></>
     if(typeof (currArr) == "string"){
       leafHtml = <TreeNode label={
-        <div id={currBranch} class={"leafNode"}>
+        <div id={currBranch} className={"leafNode"}>
         <div onClick={e => {
         deleteTreeStructure(currBranch)
         setBranchObj([...branchObj])
@@ -116,7 +116,7 @@ function App() {
     let html = <></>
     if(typeof arr == "string"){
       leafHtml = <TreeNode label={
-      <div id={branch} class={"leafNode"}>
+      <div id={branch} className={"leafNode"}>
         <div onClick={e => {
         deleteTreeStructure(branch)
         setBranchObj([...branchObj])
@@ -143,7 +143,7 @@ function App() {
       for(let i=1;i<arr.length;i++){
         leafHtml = <>{leafHtml} {structureLeaves(arr[i],branch+"-"+i)} </>
       }
-      html = <TreeNode label={<div id={branch + "-0"} class={'branchNode'}>
+      html = <TreeNode label={<div id={branch + "-0"} className={'branchNode'}>
         <div onClick={e => {
         deleteTreeStructure(branch)
         setBranchObj([...branchObj])
