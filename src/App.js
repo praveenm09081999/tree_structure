@@ -196,7 +196,7 @@ function App() {
           objArr = objArr[numArr[i]]
           }
         }
-        }} variant='contained' color='success' >Ok</Button>
+        }} variant='contained' color='success' class="button-17" role="button" >Ok</Button>
         </div>
           <div>
             <Button variant="outlined" color="error" onClick={e => { setaddPopup(false)}}>
