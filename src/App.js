@@ -1,8 +1,8 @@
 import './App.css';
 import { Tree, TreeNode } from 'react-organizational-chart'
 import { useEffect, useState } from 'react';
-
-
+import TextField from '@mui/material/TextField';
+import { Button } from '@mui/material';
 
 function App() {
   const [branchObj,setBranchObj] = useState([])
@@ -15,7 +15,7 @@ function App() {
   
 
   const structureRoot = (rootArr) => {
-  let rootHtml =<></>
+  let rootHtml = rootArr.length > 1 ? <></> : "";
   for(let i=1;i<rootArr.length;i++){
    rootHtml = <>{rootHtml} {structureTree(rootArr[i],"branch-"+i)}</>
   }
@@ -172,11 +172,18 @@ function App() {
   return (
     <div className="App">
     {addPopup && <>
-    <div id="add-branch">
-      <input id="branch-Input"/>
-      <button onClick={e => {
+    <div id="add-branch" className='add-popup'>
+      <div className='popup-layer' onClick={e => {setaddPopup(false)}}></div>
+      <div className='add-popup-menu'>
+      <div className='popup-inputbox'>
+        <TextField id="branch-Input" label="Name of the child node" variant="outlined" className='popup-input' />
+      </div>
+      <div className='popup-ok'>
+        <div>
+        <Button onClick={e => {
         let numArr = selectedBranch.split("-").map(e => parseInt(e)).filter(e => e || e===0)
         let objArr = branchObj
+        setaddPopup(false)
         for(let i=0;i<numArr.length;i++){
           if(i === numArr.length-1 && numArr[i] === 0){
             objArr.push(document.getElementById("branch-Input").value)
@@ -189,7 +196,15 @@ function App() {
           objArr = objArr[numArr[i]]
           }
         }
-        }}>Set</button>
+        }} variant='contained' color='success' >Ok</Button>
+        </div>
+          <div>
+            <Button variant="outlined" color="error" onClick={e => { setaddPopup(false)}}>
+            Cancel
+            </Button>
+            </div>
+        </div>
+        </div>
     </div>
     </>}
     <Tree label={<div className='rootNode'> {branchObj[0]} </div>}>
